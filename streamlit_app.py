@@ -34,6 +34,7 @@ if ingredients_list:
     for fruit_choosen in ingredients_list:
         ingredients_string += fruit_choosen + ' '
         fruityvice_response = requests.get("https://webhook.site/f55f66ba-20fc-48bc-840a-f88f449d3dc7")
+        st.text(fruityvice_response)
         lime_data = pd.json_normalize(fruityvice_response["Lime Nutrition Information"])
         mango_data = pd.json_normalize(fruityvice_response["Mango Nutrition Information"])
         st.subheader("Lime Nutrition Information")

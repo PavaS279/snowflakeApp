@@ -30,7 +30,7 @@ if ingredients_list:
     
     for fruit_choosen in ingredients_list:
         ingredients_string += fruit_choosen + ' '
-         st.subheader(fruit_chosen + 'Nutrition Info')
+        st.subheader(fruit_chosen + 'Nutrition Info')
         fruityvice_response = requests.get("https://webhook.site/f55f66ba-20fc-48bc-840a-f88f449d3dc7" + fruit_chosen)
         # st.text(fruityvice_response.json())
        

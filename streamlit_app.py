@@ -42,6 +42,6 @@ if ingredients_list:
 
 
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+fruityvice_response = requests.get("https://webhook.site/f55f66ba-20fc-48bc-840a-f88f449d3dc7")
 st.text(fruityvice_response)
 # fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)

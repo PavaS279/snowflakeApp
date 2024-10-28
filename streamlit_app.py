@@ -2,6 +2,7 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
+import pandas as pd
 
 
 
@@ -33,7 +34,13 @@ if ingredients_list:
     for fruit_choosen in ingredients_list:
         ingredients_string += fruit_choosen + ' '
         fruityvice_response = requests.get("https://webhook.site/f55f66ba-20fc-48bc-840a-f88f449d3dc7")
-        fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+        lime_data = pd.json_normalize(fruityvice_response["Lime Nutrition Information"], sep='_')
+        mango_data = pd.json_normalize(fruityvice_response["Mango Nutrition Information"], sep='_')
+        st.subheader("Lime Nutrition Information")
+        st.dataframe(lime_data, use_container_width=True)
+        st.subheader("Mango Nutrition Information")
+        st.dataframe(mango_data, use_container_width=True)
+        # fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
     
     # st.write(ingredients_string)
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)

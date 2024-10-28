@@ -2,9 +2,6 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
-import pandas as pd
-
-
 
 # Write directly to the app
 st.title(":cup_with_straw: Order Smoothie Form :cup_with_straw:")
@@ -33,15 +30,10 @@ if ingredients_list:
     
     for fruit_choosen in ingredients_list:
         ingredients_string += fruit_choosen + ' '
-        fruityvice_response = requests.get("https://webhook.site/f55f66ba-20fc-48bc-840a-f88f449d3dc7")
-        st.text(fruityvice_response.json())
-        lime_data = pd.json_normalize(fruityvice_response["Lime Nutrition Information"])
-        st.text(lime_data)
-        mango_data = pd.json_normalize(fruityvice_response["Mango Nutrition Information"])
-        st.subheader("Lime Nutrition Information")
-        st.dataframe(lime_data, use_container_width=True)
-        st.subheader("Mango Nutrition Information")
-        st.dataframe(mango_data, use_container_width=True)
+         st.subheader(fruit_chosen + 'Nutrition Info')
+        fruityvice_response = requests.get("https://webhook.site/f55f66ba-20fc-48bc-840a-f88f449d3dc7" + fruit_chosen)
+        # st.text(fruityvice_response.json())
+       
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
     
     # st.write(ingredients_string)
